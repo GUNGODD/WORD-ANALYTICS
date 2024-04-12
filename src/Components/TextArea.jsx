@@ -1,10 +1,12 @@
 import { useState } from "react"
 import Warning from "./Warning";
 
-export const TextArea = () => {
-    const [text, setText] = useState(" ");
-  
+export const TextArea = ({text, setText}) => {
+
     const [warningText , setWarning] = useState("");
+
+
+    //validation  
         const handleChange =(e) => {
         let  newText = e.target.value;
         setText(newText);
