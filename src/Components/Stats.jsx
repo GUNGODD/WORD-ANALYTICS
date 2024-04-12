@@ -1,10 +1,10 @@
-export const Stats = ({numberOfCharacter}) => {
+export const Stats = ({numberOfCharacter, InstagramCharacterLeft, XCharacterLeft}) => {
   return (
     <section className="stats">
       <Stat stat_number={0} platform={"Words"} />
       <Stat stat_number={numberOfCharacter} platform={"CHARACTER"} />
-      <Stat stat_number={2200} platform={"INSTAGRAM"} />
-      <Stat stat_number={0} platform={"X"} />
+      <Stat stat_number={InstagramCharacterLeft} platform={"INSTAGRAM"} />
+      <Stat stat_number={XCharacterLeft} platform={"X"} />
     </section>
   );
 };
