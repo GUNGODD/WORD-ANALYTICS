@@ -1,6 +1,6 @@
- const Stats = (
+ export default function Stats  (
   {stats}
-) => {
+) {
   return (
     <section className="stats">
       <Stat stat_number={stats.numberOfWords} platform={"Words"} />
@@ -23,4 +23,4 @@ function Stat({ stat_number, platform }) {
   );
 }
 
-export default Stat;
+

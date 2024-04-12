@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Stats } from "./Stats"
 import { TextArea } from "./TextArea"
 
- const Container = () => {
+ export default function  Container () {
     const [text, setText] = useState("");
     
     const stats  = {
@@ -19,5 +19,3 @@ import { TextArea } from "./TextArea"
 
   )
 }
-export default Container;
-
