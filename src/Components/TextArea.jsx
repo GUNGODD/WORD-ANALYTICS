@@ -14,7 +14,7 @@ export const TextArea = ({text, setText}) => {
           
        setWarning(true);
         newText = newText.replace('<script>',' ');
-        }else if ( newText.includes("@", " $", "%","*")){
+        }else if ( newText.includes("@")){
            setWarning(true);
    
             newText= newText.replace("@",  "");
