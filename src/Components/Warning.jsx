@@ -6,4 +6,3 @@ export default function  Warning ({warningText}) {
   )
 }
 
-export default Warning;
