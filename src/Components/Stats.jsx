@@ -1,6 +1,6 @@
 
 export const Stats = () => {
   return (
-   <section>States</section>
+   <section className="stats">States</section>
   )
 }
