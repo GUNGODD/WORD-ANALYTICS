@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Stats } from "./Stats"
 import { TextArea } from "./TextArea"
-import{   INSTAGRAM_MAX_CHARACTER , X_MAX_CHARACTERS} from "./Constants"
+import INSTAGRAM_MAX_CHARACTER  from "./Constants"
+import X_MAX_CHARACTERS from "./Constants"
 export const Container = () => {
     const [text, setText] = useState("");
     
