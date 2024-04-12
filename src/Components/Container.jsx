@@ -8,8 +8,9 @@ export const Container = () => {
   return (
 <main className="container">
     <TextArea text={text} setText={setText}/>
-    <Stats/>
-</main>
+    <Stats numberOfCharacter={numberOfCharacters} />
+     </main>
+
   )
 }
 

@@ -1,8 +1,8 @@
-export const Stats = () => {
+export const Stats = ({numberOfCharacter}) => {
   return (
     <section className="stats">
       <Stat stat_number={0} platform={"Words"} />
-      <Stat stat_number={0} platform={"CHARACTER"} />
+      <Stat stat_number={numberOfCharacter} platform={"CHARACTER"} />
       <Stat stat_number={2200} platform={"INSTAGRAM"} />
       <Stat stat_number={0} platform={"X"} />
     </section>
