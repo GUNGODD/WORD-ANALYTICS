@@ -3,32 +3,35 @@ import Warning from "./Warning";
 
 export const TextArea = ({text, setText}) => {
 
-    const [warningText , setWarning] = useState("");
+    const [warningText , setWarningText] = useState("");
+const [showWarning, setShowWarning] = useState(false);
+
+const handleChanges = (e) =>{
+    let newText = e.target.value;
+    if (newText.includes("<script>")){
+        
+        setWarningText("No Script tag allowed !");
+        setShowWarning(true);
+       newText = newText.replace("<script>", "");
+
+    }else if ( newText.includes("@")){
+        setWarningText("No @ symbol allowed!");
+        setShowWarning(true);
+        newText = newText.replace("@","");
+    }
+
+    setText(newText);
+} ;
+
 
 
     //validation  
-        const handleChange =(e) => {
-        let  newText = e.target.value;
-        setText(newText);
-        if (newText.includes("<script>")){
-          
-       setWarning(true);
-        newText = newText.replace('<script>',' ');
-        }else if ( newText.includes("@")){
-           setWarning(true);
-   
-            newText= newText.replace("@",  "");
-            newText= newText.replace("$",  "");
-            newText= newText.replace("%",  "");
-            newText= newText.replace("*",  "");
-        }
-        setText(newText);
-    } 
+        
     return (
         <>
             <textarea
                 placeholder="Enter you text"
-                onChange={handleChange}
+                onChange={handleChanges}
               
                 value={text}
                 className="textarea"
