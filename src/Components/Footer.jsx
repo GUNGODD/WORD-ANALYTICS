@@ -1,7 +1,7 @@
 
 const Footer = () => {
   return (
-   <footer>
+   <footer className="footer">
     <small>
         &copy; Coypright by Aditya . All right reserved .
     </small>
