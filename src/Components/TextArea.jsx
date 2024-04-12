@@ -1,4 +1,5 @@
 import { useState } from "react"
+import Warning from "./Warning";
 
 export const TextArea = () => {
     const [text, setText] = useState(" ");
@@ -24,6 +25,7 @@ export const TextArea = () => {
                 spellCheck="false"
 
             />
+            <Warning/>
         </>
     )
 }
