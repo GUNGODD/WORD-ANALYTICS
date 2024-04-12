@@ -1,7 +1,7 @@
 
-export const Warning = () => {
+export const Warning = ({warningText}) => {
   return (
-    <p> Warning</p>
+    <p className="warning">{warningText}</p>
    
   )
 }
