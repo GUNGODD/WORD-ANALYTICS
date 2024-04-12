@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Warning from "./Warning";
 
-export const TextArea = ({ text, setText }) => {
+ const TextArea = ({ text, setText }) => {
     const [warningText, setWarningText] = useState("");
     const [showWarning, setShowWarning] = useState(false);
 
@@ -53,3 +53,4 @@ export const TextArea = ({ text, setText }) => {
         </>
     );
 };
+export default TextArea;

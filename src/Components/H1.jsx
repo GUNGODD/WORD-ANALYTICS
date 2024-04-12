@@ -1,5 +1,5 @@
 
-export const H1 = () => {
+ const H1 = () => {
   return (
     <h1 className="first-heading">
         Word
@@ -7,3 +7,4 @@ export const H1 = () => {
          </h1>
   )
 }
+export default H1;

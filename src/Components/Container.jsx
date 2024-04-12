@@ -3,7 +3,7 @@ import { Stats } from "./Stats"
 import { TextArea } from "./TextArea"
 const INSTAGRAM_MAX_CHARACTERS = 280;
 const X_MAX_CHARACTERS =50;
-export const Container = () => {
+ const Container = () => {
     const [text, setText] = useState("");
     
     const stats  = {
@@ -20,4 +20,5 @@ export const Container = () => {
 
   )
 }
+export default Container;
 

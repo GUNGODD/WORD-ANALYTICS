@@ -1,4 +1,4 @@
-export const Stats = (
+ const Stats = (
   {stats}
 ) => {
   return (
@@ -22,3 +22,5 @@ function Stat({ stat_number, platform }) {
     </section>
   );
 }
+
+export default Stat;
