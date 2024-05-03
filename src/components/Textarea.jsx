@@ -1,48 +1,70 @@
-import { useState } from "react";
-import Warning from "./Warning";
-import {
-  FACEBOOK_MAX_CHARACTERS,
-  INSTAGRAM_MAX_CHARACTERS,
-} from "../lib/constants";
+import React, { useState } from "react";
+import axios from "axios";
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import SentimentDisplay from './SentimentDisplay';
 
-export default function Textarea({ setStats }) {
-  const [text, setText] = useState("");
-  const [warning, setWarning] = useState("");
+const API_KEY = "AIzaSyCDbwP14I-PFbgd2xZXTyB1HiuDDt7eI8I";
 
-  const handleChange = (e) => {
-    // extract text from event
-    let text = e.target.value;
+export default function SentimentAnalyzer() {
+  const [userInput, setUserInput] = useState("");
+  const [sentimentResult, setSentimentResult] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false); // Add loading state
 
-    // example of input validation
-    if (text.includes("<script>")) {
-      setWarning("You can't use <script> in your text.");
-      text = text.replace("<script>", "");
-    } else {
-      setWarning("");
+  const handleInputChange = (e) => {
+    setUserInput(e.target.value);
+  };
+
+  const analyzeSentiment = async () => {
+    if (!userInput) return; // Don't analyze empty input
+    setLoading(true);
+    try {
+      const genAI = new GoogleGenerativeAI(API_KEY);
+      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+      const prompt = userInput;
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      const sentimentText = response.text();
+
+      const sentimentResult = processSentimentText(sentimentText);
+      setSentimentResult(sentimentResult);
+    } catch (error) {
+      setError("Error analyzing sentiment.");
+      console.error("Error analyzing sentiment:", error);
+    } finally {
+      setLoading(false);
     }
+  };
 
-    // set text
-    setText(text);
-
-    // set stats
-    setStats({
-      numberOfWords: text.split(" ")[0] === "" ? 0 : text.split(" ").length,
-      numberOfCharacters: text.length,
-      instagramCharactersLeft: INSTAGRAM_MAX_CHARACTERS - text.length,
-      facebookCharactersLeft: FACEBOOK_MAX_CHARACTERS - text.length,
-    });
+  const processSentimentText = (sentimentText) => {
+    if (sentimentText.includes("positive")) {
+      return "Positive";
+    } else if (sentimentText.includes("negative")) {
+      return "Negative";
+    } else {
+      return "Neutral";
+    }
   };
 
   return (
-    <section className="textarea">
+    <div className="max-w-lg mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
+      <h1 className="text-2xl font-bold text-center mb-6">Sentiment Analyzer</h1>
       <textarea
+        className="w-full h-40 p-4 border rounded-md resize-none mb-4"
+        maxLength={300}
         spellCheck="false"
         placeholder="Enter your text"
-        onChange={handleChange}
-        value={text}
+        onChange={handleInputChange}
+        value={userInput}
       ></textarea>
-
-      <Warning warningText={warning} />
-    </section>
+      <button
+        className={`block w-full px-4 py-2 bg-blue-500 text-white rounded-md font-semibold hover:bg-blue-600 mb-4 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+        onClick={analyzeSentiment}
+        disabled={loading} // Disable button during analysis
+      >
+        {loading ? 'Analyzing...' : 'Analyze Sentiment'}
+      </button>
+      <SentimentDisplay sentimentResult={sentimentResult} error={error} />
+    </div>
   );
 }

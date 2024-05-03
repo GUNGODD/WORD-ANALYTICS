@@ -20,7 +20,7 @@ function App() {
 
       <Main>
         <Textarea setStats={setStats} />
-        <Stats stats={stats} />
+      
       </Main>
 
       <Footer />
